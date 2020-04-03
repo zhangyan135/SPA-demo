@@ -1,13 +1,11 @@
-$(function() {
-  var n = localStorage.getItem('n') || 0;
-  setBtnTitle(n);
+$(function () {
+  var $btn = $("#btn"),
+    num = window.localStorage.getItem('num') || 0;
+  $btn.val("被点击了" + num + "次");
+  $btn.click(function () {
+    num++;
+    window.localStorage.setItem('num', num);
+    $btn.val("被点击了" + num + "次");
 
-  $('.main input').click(function() {
-    localStorage.setItem('n', ++n);
-    setBtnTitle(n);
-  });
-
-  function setBtnTitle(n) {
-    $('.main input').val('被按了 ' + n + ' 次');
-  }
-});
+  })
+})

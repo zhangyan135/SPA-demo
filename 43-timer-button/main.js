@@ -1,22 +1,42 @@
 requirejs.config({
-  'paths':{
-    "jquery":'//apps.bdimg.com/libs/jquery/2.1.4/jquery.min'
-  }
+  'paths':'https://cdn.bootcss.com/jquery/3.4.1/jquery.js'
 })
-require(['jquery'],function($){
+
+require(['jquery']),function($){
   $(function(){
-    var $btnadd=$('#add');
-    $btnadd.click(function(){
-      require(['timer-button'],function(TimerButton){
-        var tb=new TimerButton();
-        tb.show({
-          num:6,
-          title:'agree',
-          onClick:function(){
-            alert('同意')
-          }
-        })
-      })
+    var $btnAdd = $('#add'),
+        $enabled = $('#enabled'),
+        $unabled = $('#unabled'),
+        $num = $('#number'),
+        $title = $('#text'),
+        $eventCode = $('textarea'),
+        opt={};
+    $enabled.click(function(){
+      opt.disable=true;
+    })
+    $unabled.click(function(){
+      opt.disable=false;
+    })
+    $num.change(function(){
+      opt.num=Number($num.val());
+    })
+    $title.change(function(){
+      if($title.val() !== ""){
+        opt.title=$title.val();
+      }else{
+        opt.title="同意";
+      }
+    })
+    // $timerButton.show(opt);
+    $btnAdd.click(function(){
+      opt.container="#main";
+      opt.onClick=function(){
+        eval($eventCode.html());
+      }
+      require(['index.js']),function(){
+        $timerButton.show(opt);
+      }
+
     })
   })
-})
+}

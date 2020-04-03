@@ -2,37 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-  <title>定时器按钮组件测试</title>
-  <link rel="stylesheet" href="./timer-button.css">
-  <style>
-  .box {
-    margin: 50px auto;
-    width: 130px;
-  }
-  </style>
+  <title>定时按钮的测试页面</title>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
-  <div class="box"></div>
+  <form action="">
+    初始状态：
+    <label for="enabled"><input id="enabled" name="able" type="radio"> 启用</label> 
+    <label for="unabled"><input id="unabled" name="able" type="radio" checked> 禁用</label><br>
+    禁用时长：<input type="number" id="number" name='number'><br>
+    按钮内容：<input type="text" id="text" name='text'><br>
+    事件代码：<textarea name="" id="" cols="30" rows="10">alert('按钮被点击了！')</textarea><br>
+    <input type="button" id='add' value="添加定时器按钮">
+
+  </form>
+  <hr>
+  <div id="main">
+
+  </div>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+  <script src="index.js"></script>
+  <script>
+    $(function(){
+      var $btnAdd = $('#add'),
+          $enabled = $('#enabled'),
+          $unabled = $('#unabled'),
+          $num = $('#number'),
+          $title = $('#text'),
+          $eventCode = $('textarea'),
+          opt={};
+      $enabled.click(function(){
+        opt.disable=true;
+      })
+      $unabled.click(function(){
+        opt.disable=false;
+      })
+      $num.change(function(){
+        opt.num=Number($num.val());
+      })
+      $title.change(function(){
+        if($title.val() !== ""){
+          opt.title=$title.val();
+        }else{
+          opt.title="同意";
+        }
+      })
+      // $timerButton.show(opt);
+      $btnAdd.click(function(){
+        opt.container="#main";
+        console.log($eventCode.html());
+        opt.onClick=function(){
+          eval($eventCode.html());
+        }
+        $timerButton.show(opt);
+
+      })
+    })
+  </script>
 </body>
-<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="./timer-button.js"></script>
-<script>
-  var i = 50;
-  console.log(i);
-  
-  $(function(){ 
-      var btn = $timerButton.init({
-        'container': 'div.box',
-        'timer': 6,
-        'text': '确定',
-        'eventcb': function() { alert('OK! I am here!'); }});
-
-      /*
-      btn.on('timer-button-click', function(){
-        alert('OK! I trigger the click event');
-      });*/
-  });
-</script>
 </html>
-

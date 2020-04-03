@@ -1,41 +1,35 @@
-$(function() {
-  var $img = $('img'),
-      $url = $('input[type="url"]'),
-      $btn = $('input[type="button"]'),
-      $tmpImage;
+$(function () {
+  var $text = $('#url'),
+  $btn = $('#btn'),
+  $img = $('img'),
+  $tmpImg = $('<img>');
+// load local store string to $img
+var strImg = window.localStorage.getItem('img');
+if(strImg !== ""){ 
+  $img.attr("src",strImg);
+}
+$btn.click(function(){
+  //validata url not null
+  var url = $text.val();
+  if(url === "") return;
+  //load url image to tmpImg
+  $tmpImg.attr('crossOrigin',"anonymous");
+  $tmpImg.attr("src",url);
+})
+$tmpImg.load(function() {
+  //create canvas
+  var can =$('<canvas>').get(0);
+  var ctx = can.getContext('2d');
+  ctx.width=$tmpImg.get(0).width;
+  ctx.height=$tmpImg.get(0).height;
+  //canvas fill tmpImg
+  ctx.drawImage($tmpImg.get(0),0,0,can.width,can.height);
+  //save base64
+  var str = can.toDataURL(); 
+  console.log(str);
+  window.localStorage.setItem('img',str);
+  var strImg = window.localStorage.getItem('img');
+  $img.attr("src",strImg);
+})
 
-  init();
-  loadImage();
-
-  function init() { 
-    $tmpImage = $('<img>');
-    $tmpImage.attr('crossOrigin', 'anonymous');
-  }
-
-  function loadImage() {
-    var str = localStorage.getItem('img');
-    if(str) {
-      $img.attr('src', str);
-    } else {
-      $img.css({display: 'none'});
-    }
-  }
-
-  $btn.click(function() {
-    $tmpImage.attr('src', $url.val());
-    $url.val('');
-  });
-
-  $tmpImage.load(function() {
-    var can = $('<canvas>').get(0);
-    var ctx = can.getContext('2d');
-
-    can.width = this.width;
-    can.height = this.height;
-
-    ctx.drawImage(this, 0, 0, can.width, can.height);
-    var str = can.toDataURL();
-    localStorage.setItem('img', str);
-    loadImage();
-  });
-});
+})
