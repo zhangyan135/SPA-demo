@@ -3,25 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>轮播图</title>
-   <style>
-    .box {
-      height:300px;
-      width: 500px;
-      background-color:red  
-    }
-</style>
+  <link rel="stylesheet" href="./swiper.css">
 </head>
 <body>
-  <div class="box" id="box"></div>
-  <script src='./swiper.js'/>
+<div class="box" id="box">
+  
+  </div>
   <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="./swiper.js"></script>
   <script>
-var options={
-   elem:'#carousel',
-   anim:'fade',
-   height:'400px',
-   delay:2000,                                                                     pagePation:'none'
-}
+   $swiper.show();
   </script>
 </body>
 </html>
