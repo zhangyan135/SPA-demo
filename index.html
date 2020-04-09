@@ -2,38 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>百度注册</title>
-  <link rel="stylesheet" href="./baidu.css">
-</head>
-
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0">
+  <title>无标题 - 记事本</title>
+  <!-- build:css bundle.min.css -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/dlg-common.css">
+  <link rel="stylesheet" href="com/list/list.css">
+  <link rel="stylesheet" href="com/menubar/menubar.css">
+  <link rel="stylesheet" href="com/editor/editor.css">
+  <link rel="stylesheet" href="com/statusbar/statusbar.css">
+  <link rel="stylesheet" href="com/dlg-font/dlg-font.css">
+ </head>
 <body>
-<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="baidu.js"></script>
-  <div class="mod-new-reg-bg">
-    <img src="https://passport.baidu.com/static/passpc-account/img/reg_bg_min.jpg" id='bgimg'/>
- </div>
- <div id='logo'>
-   <img src="https://passport.baidu.com/static/passpc-account/img/baidu.png"/>
- </div>
- <div class="ppp">
-   <p>让复杂的世界更简单</p>
- </div>
-  <div class="mod-reg clearfix mod-reg- mod-new-reg-content"> 
-    <p id='txt'>欢迎注册</p>
-   用户名 <input type="text" placeholder='设置用户名' id="username" />
-   <br/>
-   <div id='username-validation-message'></div>
-   手机号 <input type="text" placeholder='可用于登录时找回密码'id="telephone" />
-   <br/>
-   <div id='telephone-validation-message'></div>
-   密&nbsp;&nbsp;&nbsp;码 <input type="text" placeholder='请设置登录密码' id="password" />
-   <br/>
-   <div id='password-validation-message'></div>
-   验证码 <input type="text" placeholder="请输入验证码" id="in"/>
-   <button id='btn'>获取验证码</button>
-  <div>
-    <button id='reg'>注册</button>
-    <script src='button.js'></script>
+  <div class="notepad-app"></div>
 </body>
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<!-- build:js bundle.min.js -->
+<script src="com/menubar/menubar.js"></script>
+<script src="com/statusbar/statusbar.js"></script>
+<script src="com/editor/editor.js"></script>
+<script src="com/list/list.js"></script>
+<script src="com/dlg-font/dlg-font.js"></script>
+<script src="js/app.js"></script>
+<script src="js/menu-data.js"></script>
 </html>
-
